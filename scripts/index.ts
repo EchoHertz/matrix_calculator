@@ -142,5 +142,32 @@ function gapMetrix(){
 }
 
 function multiMetrix() {
+    let leftRow:number = leftMetrix.length
+    let leftCol:number = leftMetrix[0].length
+    let rightRow:number = rightMetrix.length
+    let rightCol:number = rightMetrix[0].length
+    
+    if(!leftMetrix){
+        alert(1)
+    } else if(!rightMetrix) {
+        alert(2)
+    } else {
+        let result = []
+        for(let i = 0; i < leftRow; i++){
+            let rows = []
+            for(let j = 0; j < rightCol; j++){
+               rows.push(calc(i, j, rightRow))
+            }
+            result.push(rows)
+        }
+        console.log(result)
+    }
+}
 
+function calc(row:number, col:number, length:number):number {
+    let result = 0
+    for(let i = 0; i < length; i++) {
+        result += parseFloat((<HTMLInputElement>document.getElementById(`left-${row}-${i}`)).value) * parseFloat((<HTMLInputElement>document.getElementById(`right-${i}-${col}`)).value)
+    }
+    return result
 }
