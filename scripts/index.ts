@@ -19,13 +19,13 @@ const where = (<HTMLSelectElement>document.getElementById('where'))
 const leftContainer = (document.getElementById('left-container'))
 const rightContainer = (document.getElementById('right-container'))
 
-generator.addEventListener('click',(event) => {metrixGen(left.value, right.value, where.value)})
-addBtn.addEventListener('click', (event) => {addMetrix()})
-gapBtn.addEventListener('click', (event) => {gapMetrix()})
-mulBtn.addEventListener('click', (event) => {multiMetrix()})
+generator.addEventListener('click',(event) => {matrixGen(left.value, right.value, where.value)})
+addBtn.addEventListener('click', (event) => {addMatrix()})
+gapBtn.addEventListener('click', (event) => {gapMatrix()})
+mulBtn.addEventListener('click', (event) => {multiMatrix()})
 
-var leftMetrix
-var rightMetrix
+var leftMatrix
+var rightMatrix
 
 /**
  * 
@@ -34,7 +34,7 @@ var rightMetrix
  * @param where 항
  * @description 가로 x 세로 y 만큼의 행렬을 만들어 줍니다.
  */
-function metrixGen(x:any, y:any, z:any):void {
+function matrixGen(x:any, y:any, z:any):void {
     let reg = /^[0-9]*$/
 
     if(!reg.test(x)){
@@ -44,17 +44,17 @@ function metrixGen(x:any, y:any, z:any):void {
     } else if(!where.value) {
         alert('항을 선택해주세요.')
     } else {
-            let _metrix: number[][] = [];
+            let _matrix: number[][] = [];
         for(let i = 0; i < x; i++) {
             let row: number[] = [];
             for(let j = 0; j < y; j++){
                 row.push(0)
             }
-            _metrix.push(row)
+            _matrix.push(row)
         }
 
-        eval(z + 'Container.innerHTML = metrixToHTMLTable(_metrix, z)')
-        eval(z + 'Metrix = _metrix')
+        eval(z + 'Container.innerHTML = matrixToHTMLTable(_matrix, z)')
+        eval(z + 'Matrix = _matrix')
     }
 }
 
@@ -76,20 +76,20 @@ function stringToArr(str:string):any{
     return str.split('-')
 }
 
-function arrToMetrix(arr:string[]){
+function arrToMatrix(arr:string[]){
     
 }
 
-function metrixToHTMLTable(metrix:number[][], where:string){
-    let i_Max = metrix.length
-    let j_Max = metrix[0].length
+function matrixToHTMLTable(matrix:number[][], where:string){
+    let i_Max = matrix.length
+    let j_Max = matrix[0].length
 
     let tags:string = '<table>'
     for(let i = 0; i < i_Max; i++) {
         tags += '<tr>'
         for(let j = 0; j< j_Max; j++){
             tags += '<td>'
-            tags += `<input type="text" id="${where}-${i}-${j}" name="${where}-${i}-${j}" value="${metrix[i][j]}" />`
+            tags += `<input type="text" id="${where}-${i}-${j}" name="${where}-${i}-${j}" value="${matrix[i][j]}" />`
             tags += '</td>'
         }
         tags += '</tr>'
@@ -99,19 +99,19 @@ function metrixToHTMLTable(metrix:number[][], where:string){
     return tags
 }
 
-function addMetrix(){
+function addMatrix(){
     let result = []
 
-    if(!leftMetrix) {
+    if(!leftMatrix) {
         alert('좌항이 생성되지 않았습니다.')
-    } else if (!rightMetrix){
+    } else if (!rightMatrix){
         alert('우항이 생성되지 않았습니다.')
-    } else if (leftMetrix.length !== rightMetrix.length || leftMetrix[0].length !== rightMetrix[0].length){
+    } else if (leftMatrix.length !== rightMatrix.length || leftMatrix[0].length !== rightMatrix[0].length){
         alert('좌항과 우항이 크기가 같아야 합니다.')
     } else {
-        for(let i = 0; i< leftMetrix.length; i++) {
+        for(let i = 0; i< leftMatrix.length; i++) {
             let row = []
-            for(let j = 0; j < leftMetrix[i].length; j++){
+            for(let j = 0; j < leftMatrix[i].length; j++){
                 row.push(parseFloat((<HTMLInputElement>document.getElementById(`left-${i}-${j}`)).value)+ parseFloat((<HTMLInputElement>document.getElementById(`right-${i}-${j}`)).value))
             }
             result.push(row)
@@ -120,19 +120,19 @@ function addMetrix(){
     console.log(result)
 }
 
-function gapMetrix(){
+function gapMatrix(){
     let result = []
 
-    if(!leftMetrix) {
+    if(!leftMatrix) {
         alert('좌항이 생성되지 않았습니다.')
-    } else if (!rightMetrix){
+    } else if (!rightMatrix){
         alert('우항이 생성되지 않았습니다.')
-    } else if (leftMetrix.length !== rightMetrix.length || leftMetrix[0].length !== rightMetrix[0].length){
+    } else if (leftMatrix.length !== rightMatrix.length || leftMatrix[0].length !== rightMatrix[0].length){
         alert('좌항과 우항이 크기가 같아야 합니다.')
     } else {
-        for(let i = 0; i< leftMetrix.length; i++) {
+        for(let i = 0; i< leftMatrix.length; i++) {
             let row = []
-            for(let j = 0; j < leftMetrix[i].length; j++){
+            for(let j = 0; j < leftMatrix[i].length; j++){
                 row.push(parseFloat((<HTMLInputElement>document.getElementById(`left-${i}-${j}`)).value) - parseFloat((<HTMLInputElement>document.getElementById(`right-${i}-${j}`)).value))
             }
             result.push(row)
@@ -141,15 +141,15 @@ function gapMetrix(){
     console.log(result)
 }
 
-function multiMetrix() {
-    let leftRow:number = leftMetrix.length
-    let leftCol:number = leftMetrix[0].length
-    let rightRow:number = rightMetrix.length
-    let rightCol:number = rightMetrix[0].length
+function multiMatrix() {
+    let leftRow:number = leftMatrix.length
+    let leftCol:number = leftMatrix[0].length
+    let rightRow:number = rightMatrix.length
+    let rightCol:number = rightMatrix[0].length
     
-    if(!leftMetrix){
+    if(!leftMatrix){
         alert(1)
-    } else if(!rightMetrix) {
+    } else if(!rightMatrix) {
         alert(2)
     } else {
         let result = []
