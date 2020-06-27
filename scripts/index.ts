@@ -1,16 +1,28 @@
+/**
+ * 버튼 이벤트 리스너
+ */
 const generator = document.getElementById('generator')
 const addBtn = document.getElementById('add')
+const gapBtn = document.getElementById('gap')
+const mulBtn = document.getElementById('mul')
 
-
+/**
+ * 행렬 생성기
+ */
 const left = (<HTMLInputElement>document.getElementById('left'))
 const right = (<HTMLInputElement>document.getElementById('right'))
 const where = (<HTMLSelectElement>document.getElementById('where'))
 
+/**
+ * 좌항 우항 컨테이너
+ */
 const leftContainer = (document.getElementById('left-container'))
 const rightContainer = (document.getElementById('right-container'))
 
 generator.addEventListener('click',(event) => {metrixGen(left.value, right.value, where.value)})
 addBtn.addEventListener('click', (event) => {addMetrix()})
+gapBtn.addEventListener('click', (event) => {gapMetrix()})
+mulBtn.addEventListener('click', (event) => {multiMetrix()})
 
 var leftMetrix
 var rightMetrix
@@ -88,25 +100,47 @@ function metrixToHTMLTable(metrix:number[][], where:string){
 }
 
 function addMetrix(){
-    let _left = []
-    let _right = []
+    let result = []
 
     if(!leftMetrix) {
-        alert('1')
+        alert('좌항이 생성되지 않았습니다.')
     } else if (!rightMetrix){
-        alert('2')
+        alert('우항이 생성되지 않았습니다.')
     } else if (leftMetrix.length !== rightMetrix.length || leftMetrix[0].length !== rightMetrix[0].length){
-        alert('3')
+        alert('좌항과 우항이 크기가 같아야 합니다.')
     } else {
         for(let i = 0; i< leftMetrix.length; i++) {
-            let _rightRow = []
-            let _leftRow = []
+            let row = []
             for(let j = 0; j < leftMetrix[i].length; j++){
-                _leftRow.push(parseFloat((<HTMLInputElement>document.getElementById(`left-${i}-${j}`)).value))
-                _rightRow.push(parseFloat((<HTMLInputElement>document.getElementById(`right-${i}-${j}`)).value))
+                row.push(parseFloat((<HTMLInputElement>document.getElementById(`left-${i}-${j}`)).value)+ parseFloat((<HTMLInputElement>document.getElementById(`right-${i}-${j}`)).value))
             }
-            _left.push(_leftRow)
-            _right.push(_rightRow)
+            result.push(row)
         }
     }
+    console.log(result)
+}
+
+function gapMetrix(){
+    let result = []
+
+    if(!leftMetrix) {
+        alert('좌항이 생성되지 않았습니다.')
+    } else if (!rightMetrix){
+        alert('우항이 생성되지 않았습니다.')
+    } else if (leftMetrix.length !== rightMetrix.length || leftMetrix[0].length !== rightMetrix[0].length){
+        alert('좌항과 우항이 크기가 같아야 합니다.')
+    } else {
+        for(let i = 0; i< leftMetrix.length; i++) {
+            let row = []
+            for(let j = 0; j < leftMetrix[i].length; j++){
+                row.push(parseFloat((<HTMLInputElement>document.getElementById(`left-${i}-${j}`)).value) - parseFloat((<HTMLInputElement>document.getElementById(`right-${i}-${j}`)).value))
+            }
+            result.push(row)
+        }
+    }
+    console.log(result)
+}
+
+function multiMetrix() {
+
 }
