@@ -24,8 +24,8 @@ addBtn.addEventListener('click', (event) => {addMatrix()})
 gapBtn.addEventListener('click', (event) => {gapMatrix()})
 mulBtn.addEventListener('click', (event) => {multiMatrix()})
 
-var leftMatrix
-var rightMatrix
+var leftMatrix = [[0,0,0],[0,0,0],[0,0,0]]
+var rightMatrix = [[0,0,0],[0,0,0],[0,0,0]]
 
 /**
  * 
@@ -89,7 +89,7 @@ function matrixToHTMLTable(matrix:number[][], where:string){
         tags += '<tr>'
         for(let j = 0; j< j_Max; j++){
             tags += '<td>'
-            tags += `<input type="text" id="${where}-${i}-${j}" name="${where}-${i}-${j}" value="${matrix[i][j]}" />`
+            tags += `<input type="text" ${where === "result" ? 'readonly' : ''} class="cell" id="${where}-${i}-${j}" name="${where}-${i}-${j}" value="${matrix[i][j]}" />`
             tags += '</td>'
         }
         tags += '</tr>'
@@ -117,7 +117,8 @@ function addMatrix(){
             result.push(row)
         }
     }
-    console.log(result)
+    
+    document.getElementById('result').innerHTML = matrixToHTMLTable(result, 'result')
 }
 
 function gapMatrix(){
@@ -138,8 +139,8 @@ function gapMatrix(){
             result.push(row)
         }
     }
-    console.log(result)
-}
+    
+    document.getElementById('result').innerHTML = matrixToHTMLTable(result, 'result')}
 
 function multiMatrix() {
     let leftRow:number = leftMatrix.length
@@ -160,8 +161,8 @@ function multiMatrix() {
             }
             result.push(rows)
         }
-        console.log(result)
-    }
+        
+        document.getElementById('result').innerHTML = matrixToHTMLTable(result, 'result')    }
 }
 
 function calc(row:number, col:number, length:number):number {

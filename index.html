@@ -3,32 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="styles/index.css">
     <title>Matrix</title>
 </head>
 <body>
+<div class="wrapper">
     <div class="main-container">
-        <input type="text" class="" id="left" /> by <input type="text" class="" id="right" />
+        <input type="text" class="generator" id="left" /> by <input type="text" class="generator" id="right" />
         <select name="where" id="where">
             <option value="">좌/우</option>
-            <option value="left">좌</option>
-            <option value="right">우</option>
+            <option value="left">좌항</option>
+            <option value="right">우항</option>
         </select>
         <button type="button" class="btn" id="generator">generate</button>
     </div>
     <div class="matrix-container">
-        <form id="leftFrm">
-            <div class="place-holder" id="left-container">여기에 생성됩니다.</div>
-        </form>
-            <div>
-                <button type="button" id="add">A + B</button>
-                <button type="button" id="gap">A - B</button>
-                <button type="button" id="mul">A X B</button>
+        <div class="matrix-left">
+            <div class="matrix-title">
+                <h3>좌항</h3>
             </div>
-        <form id="rightFrm">
-            <div class="place-holder" id="right-container">여기에 생성됩니다.</div>
-        </form>
+            <form id="leftFrm">
+                <div class="place-holder" id="left-container">
+                    <table><tbody><tr><td><input type="text" class="cell" id="left-0-0" name="left-0-0" value="0"></td><td><input type="text" class="cell" id="left-0-1" name="left-0-1" value="0"></td><td><input type="text" class="cell" id="left-0-2" name="left-0-2" value="0"></td></tr><tr><td><input type="text" class="cell" id="left-1-0" name="left-1-0" value="0"></td><td><input type="text" class="cell" id="left-1-1" name="left-1-1" value="0"></td><td><input type="text" class="cell" id="left-1-2" name="left-1-2" value="0"></td></tr><tr><td><input type="text" class="cell" id="left-2-0" name="left-2-0" value="0"></td><td><input type="text" class="cell" id="left-2-1" name="left-2-1" value="0"></td><td><input type="text" class="cell" id="left-2-2" name="left-2-2" value="0"></td></tr></tbody></table>
+                </div>
+            </form>
+        </div>
+        <div class="btn-container">
+            <button type="button" id="add">A + B</button>
+            <button type="button" id="gap">A - B</button>
+            <button type="button" id="mul">A X B</button>
+        </div>
+        <div class="matrix-right">
+            <div class="matrix-title">
+                <h3>우항</h3>
+            </div>
+            <form id="rightFrm">
+                <div class="place-holder" id="right-container">
+                    <table><tbody><tr><td><input type="text" class="cell" id="right-0-0" name="right-0-0" value="0"></td><td><input type="text" class="cell" id="right-0-1" name="right-0-1" value="0"></td><td><input type="text" class="cell" id="right-0-2" name="right-0-2" value="0"></td></tr><tr><td><input type="text" class="cell" id="right-1-0" name="right-1-0" value="0"></td><td><input type="text" class="cell" id="right-1-1" name="right-1-1" value="0"></td><td><input type="text" class="cell" id="right-1-2" name="right-1-2" value="0"></td></tr><tr><td><input type="text" class="cell" id="right-2-0" name="right-2-0" value="0"></td><td><input type="text" class="cell" id="right-2-1" name="right-2-1" value="0"></td><td><input type="text" class="cell" id="right-2-2" name="right-2-2" value="0"></td></tr></tbody></table>
+                </div>
+            </form>
+        </div>
     </div>
+    <div class="result-container">
+        <h2>결과값</h2>
+        <div id="result">
+
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="scripts/index.js"></script>
 </body>
 </html>
